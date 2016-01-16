@@ -1,0 +1,18 @@
+{
+  "name": "Student Info",
+  "description": "Store and view information on students.",
+  "main": "index.html",
+  "moduleType": [],
+  "authors": [
+    "Sudipto Chandra"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
