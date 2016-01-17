@@ -11,30 +11,37 @@
 
     <!-- style linkers -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
-<body ng-controller="AppController as appCtrl">
+<body style="background-image: url('image/background.jpeg');" ng-controller="AppController as appCtrl">
 
-<!-- Top bar -->
-<div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <a href="/" class="navbar-brand">Student Information</a>
-        <div class="navbar-right navbar-btn">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addStudent">
-                <span class="glyphicon glyphicon-plus"></span> Add Student
-            </button>
-        </div>
-    </div>
+<!-- title -->
+<div class="text-center well" style="padding: 0 0 0 0;">
+    <h2>Student Information System</h2>
 </div>
 
+<!-- body -->
 <div class="container">
     <student-navbar></student-navbar>
-    <div class="text-center text-warning well" ng-show="appCtrl.error">{{appCtrl.error}}</div>
+    <div class="text-center text-info well" ng-show="appCtrl.error"><b>{{appCtrl.error}}</b></div>
     <student-table ng-show="appCtrl.studentList.length"></student-table>
     <student-overview ng-show="appCtrl.studentList.length"></student-overview>
     <div class="text-center text-info well" ng-show="!appCtrl.studentList.length">
         No record to display. Please add some student record first.
+    </div>
+</div>
+
+<!-- bottom bar -->
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+        <div class="navbar-btn btn navbar-left">
+            <i class="text-muted">Developer:</i>
+            <b class="text-success">Sudipto Chandra</b>
+        </div>
+        <div class="navbar-btn btn navbar-right">
+            <i class="text-muted">Contact:</i>
+            <a href="mailto:dipu.sudipta@gmail.com">dipu.sudipta@gmail.com</a>
+        </div>
     </div>
 </div>
 
@@ -53,6 +60,9 @@
 </div>
 <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudentModalLabel">
     <delete-student></delete-student>
+</div>
+<div class="modal fade" id="queryDatabase" tabindex="-1" role="dialog" aria-labelledby="queryModalLabel">
+    <query-database></query-database>
 </div>
 
 </body>

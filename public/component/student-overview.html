@@ -1,8 +1,7 @@
 <!-- student list overview -->
-<div class="navbar navbar-default">
-    <div class="container navbar-text">
-        <div class="col-xs-4">Total Student: <b>{{appCtrl.studentList.length}}</b></div>
-        <div class="col-xs-4">Passed: <b>{{appCtrl.getPassCount()}}</b></div>
-        <div class="col-xs-4">Average Grade: <b>{{appCtrl.getAverage()}}</b></div>
-    </div>
+<div class="navbar navbar-default" style="padding: 0 50px 0 20px;">
+    <div class="navbar-text">
+        Total Student: <b>{{appCtrl.studentList.length}}</b></div>
+    <div class="navbar-text navbar-right">
+        Average Grade: <b>{{appCtrl.getAverage()}}</b></div>
 </div>

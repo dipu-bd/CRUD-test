@@ -1,5 +1,5 @@
-<!-- Edit a student modal -->
-<div class="modal-dialog modal-sm" role="document">
+<!-- Delete a student modal -->
+<div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -7,30 +7,24 @@
             <h4 class="modal-title" id="addStudentModalLabel">Remove Student</h4>
         </div>
         <div class="modal-body">
+            <div class="text-center text-info well" ng-show="appCtrl.error"><b>{{appCtrl.error}}</b></div>
+            <!-- delete student form -->
             <form ng-submit="appCtrl.deleteStudent()">
                 <div class="form-group">
                     You are attempting to delete one record.
                     <table class="table table-bordered">
                         <tbody>
-                        <tr>
-                            <th>Student name</th>
-                            <td>{{appCtrl.student.student_name}}</td>
-                        </tr>
-                        <tr>
-                            <th>Reg. no</th>
-                            <td>{{appCtrl.student.regno}}</td>
-                        </tr>
-                        <tr>
-                            <th>CGPA</th>
-                            <td>{{appCtrl.student.cgpa}}</td>
+                        <tr ng-repeat="table in appCtrl.tableDesc">
+                            <th>{{table[1]}}</th>
+                            <td>{{appCtrl.student[table[0]]}}</td>
                         </tr>
                         </tbody>
                     </table>
-                    <b>Are you sure to delete this record?</b>
+                    <b class="text-warning">Are you sure to delete this record?</b>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Delete Record"/>
+                    <input type="submit" class="btn btn-warning" value="Delete Record"/>
                 </div>
             </form>
         </div>

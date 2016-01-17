@@ -28,35 +28,37 @@ server.listen(port);
 //
 // response to web query
 //
-app.post('/query', function (request, response) {
-    var query = request.body.query;
-    database.runQuery(query, function (err, res) {
-        response.send({error: err, result: res});
+app.post('/list', function (request, response) {
+    database.allStudents(function (err, res) {
+        if (err) response.send(404, err);
+        else response.send(200, {result: res});
     });
 });
 app.post('/add', function (request, response) {
     var student = request.body;
     database.addStudent(student.student_name, student.regno, student.cgpa, function (err, res) {
-        response.send({error: err, result: res});
+        if (err) response.send(404, err);
+        else response.send(200, {result: res});
     });
 });
-
 app.post('/edit', function (request, response) {
     var student = request.body;
     database.updateStudent(student.student_id, student.student_name, student.regno, student.cgpa, function (err, res) {
-        response.send({error: err, result: res});
+        if (err) response.send(404, err);
+        else response.send(200, {result: res});
     });
 });
-
 app.post('/delete', function (request, response) {
     var student_id = request.body.student_id;
     database.deleteStudent(student_id, function (err, res) {
-        response.send({error: err, result: res});
+        if (err) response.send(404, err);
+        else response.send(200, {result: res});
     });
 });
-
-app.get('/list', function (request, response) {
-    database.allStudents(function (err, res) {
-        response.send({error:err, result:res});
+app.post('/query', function (request, response) {
+    var query = request.body.query;
+    database.runQuery(query, function (err, res) {
+        if (err) response.send(404, err);
+        else response.send(200, {result: res});
     });
 });

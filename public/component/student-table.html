@@ -2,21 +2,16 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>#</th>
-        <th>Student Name</th>
-        <th>Registration No</th>
-        <th>CGPA</th>
-        <th>Grade</th>
-        <th>Options</th>
+        <th class="text-center" ng-repeat="table in appCtrl.tableDesc">{{table[1]}}</th>
+        <th class="text-center">Options</th>
     </tr>
     </thead>
-    <tbody>
-    <tr ng-repeat="student in appCtrl.studentList">
+    <tbody class="text-center">
+    <tr ng-repeat="student in appCtrl.studentList" ng-show="appCtrl.canShow(student)">
         <td>{{student.student_id}}</td>
         <td>{{student.student_name}}</td>
         <td>{{student.regno}}</td>
-        <td>{{student.cgpa}}</td>
-        <td>{{appCtrl.getGrade(student.cgpa)}}</td>
+        <td>{{student.cgpa}} ({{appCtrl.getGrade(student.cgpa)}})</td>
         <td>
             <div class="btn-group-sm">
                 <button type="button" class="btn btn-primary" ng-click="appCtrl.beginEdit(student)">

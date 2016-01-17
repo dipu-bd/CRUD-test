@@ -26,16 +26,11 @@ pool.on('error', function (err) {
 var runQuery = function (sql, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
-            callback("Error connecting to database");
+            callback(err);
         } else {
-            connection.query(sql, function (err, rows) {
+            connection.query(sql, function (err, res) {
                 connection.release();
-                if (err) {
-                    callback("Error querying to database");
-                }
-                else {
-                    callback(null, rows);
-                }
+                callback(null, res);
             });
         }
     });
@@ -70,16 +65,22 @@ var getStudent = function (regno, callback) {
  * @param callback (err, result) : if no error then error is null, otherwise result is null
  */
 var addStudent = function (student_name, regno, cgpa, callback) {
-    var sql = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?); ";
-    var inserts = ['student', 'student_name', 'regno', 'cgpa', student_name, regno, cgpa];
-    sql = mysql.format(sql, inserts);
-    runQuery(sql, function (err) {
-        if (err) {
-            callback(err);
-        }
-        else {
-            getStudent(regno, callback);
+    getStudent(regno, function (err, res) {
+        if (res) {
+            callback("Another student with same registration number already exists", null);
+        } else {
+            var sql = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?); ";
+            var inserts = ['student', 'student_name', 'regno', 'cgpa', student_name, regno, cgpa];
+            sql = mysql.format(sql, inserts);
+            runQuery(sql, function (err) {
+                if (err) {
+                    callback(err);
+                }
+                else {
+                    getStudent(regno, callback);
 
+                }
+            });
         }
     });
 };
@@ -93,15 +94,21 @@ var addStudent = function (student_name, regno, cgpa, callback) {
  * @param callback (err, result) : if no error then error is null, otherwise result is null
  */
 var updateStudent = function (student_id, student_name, regno, cgpa, callback) {
-    var sql = "UPDATE ?? SET ??=?, ??=?, ??=? WHERE ??=?;";
-    var inserts = ['student', 'student_name', student_name, 'regno', regno, 'cgpa', cgpa, 'student_id', student_id];
-    sql = mysql.format(sql, inserts);
-    runQuery(sql, function (err) {
-        if (err) {
-            callback(err);
-        }
-        else {
-            getStudent(regno, callback);
+    getStudent(regno, function (err, res) {
+        if (res && res.student_id != student_id) {
+            callback("Another student with same registration number already exists", null);
+        } else {
+            var sql = "UPDATE ?? SET ??=?, ??=?, ??=? WHERE ??=?;";
+            var inserts = ['student', 'student_name', student_name, 'regno', regno, 'cgpa', cgpa, 'student_id', student_id];
+            sql = mysql.format(sql, inserts);
+            runQuery(sql, function (err) {
+                if (err) {
+                    callback(err);
+                }
+                else {
+                    getStudent(regno, callback);
+                }
+            });
         }
     });
 };
