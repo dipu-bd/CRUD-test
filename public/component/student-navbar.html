@@ -1,0 +1,17 @@
+<!-- student list navbar -->
+<div class="navbar navbar-default container">
+    <div class="navbar-left navbar-btn">
+        <button type="button" class="btn btn-default" ng-click="appCtrl.refreshList()">
+            <span class="glyphicon glyphicon-refresh"></span> Refresh List
+        </button>
+    </div>
+    <form class="navbar-form form-inline navbar-right" id="filter-form">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                <input type="text" class="form-control" id="filter-text" placeholder="Filter text">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StudentInfo">
+
+<head>
+    <title>Student Info</title>
+
+    <!-- meta declarations -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Stores and view information on students.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- style linkers -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="AppController as appCtrl">
+
+<!-- Top bar -->
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <a href="/" class="navbar-brand">Student Information</a>
+        <div class="navbar-right navbar-btn">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addStudent">
+                <span class="glyphicon glyphicon-plus"></span> Add Student
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <student-navbar></student-navbar>
+    <div class="text-center text-warning well" ng-show="appCtrl.error">{{appCtrl.error}}</div>
+    <student-table ng-show="appCtrl.studentList.length"></student-table>
+    <student-overview ng-show="appCtrl.studentList.length"></student-overview>
+    <div class="text-center text-info well" ng-show="!appCtrl.studentList.length">
+        No record to display. Please add some student record first.
+    </div>
+</div>
+
+<!-- scripts sources -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="script.js"></script>
+
+<!-- modals to trigger by button -->
+<div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel">
+    <add-student></add-student>
+</div>
+<div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel">
+    <edit-student></edit-student>
+</div>
+<div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudentModalLabel">
+    <delete-student></delete-student>
+</div>
+
+</body>
+</html>

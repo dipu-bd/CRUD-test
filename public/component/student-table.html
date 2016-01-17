@@ -1,0 +1,32 @@
+<!-- Student data table -->
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Student Name</th>
+        <th>Registration No</th>
+        <th>CGPA</th>
+        <th>Grade</th>
+        <th>Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="student in appCtrl.studentList">
+        <td>{{student.student_id}}</td>
+        <td>{{student.student_name}}</td>
+        <td>{{student.regno}}</td>
+        <td>{{student.cgpa}}</td>
+        <td>{{appCtrl.getGrade(student.cgpa)}}</td>
+        <td>
+            <div class="btn-group-sm">
+                <button type="button" class="btn btn-primary" ng-click="appCtrl.beginEdit(student)">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </button>
+                <button type="button" class="btn btn-warning" ng-click="appCtrl.beginDelete(student)">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                </button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
