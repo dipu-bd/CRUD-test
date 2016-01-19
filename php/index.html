@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StudentInfo">
+
+<head>
+    <title>Student Info</title>
+
+    <!-- meta declarations -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Stores and view information on students.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- style linkers -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="AppController as appCtrl">
+
+<!-- title -->
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="navbar-brand">Student Information System</div>
+</div>
+
+<!-- body -->
+<div class="container">
+    <student-navbar></student-navbar>
+    <div class="text-center text-info well" ng-show="appCtrl.error"><b>{{appCtrl.error}}</b></div>
+    <student-table ng-show="appCtrl.studentList.length"></student-table>
+    <student-overview ng-show="appCtrl.studentList.length"></student-overview>
+    <div class="text-center text-info well" ng-show="!appCtrl.studentList.length">
+        No record to display. Please add some student record first.
+    </div>
+</div>
+
+<!-- bottom bar -->
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+        <div class="navbar-btn btn navbar-left">
+            <i class="text-muted">Developer:</i>
+            <b class="text-success">Sudipto Chandra</b>
+        </div>
+        <div class="navbar-btn btn navbar-right">
+            <i class="text-muted">Contact:</i>
+            <a href="mailto:dipu.sudipta@gmail.com">dipu.sudipta@gmail.com</a>
+        </div>
+    </div>
+</div>
+
+<!-- scripts sources -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/script.js"></script>
+
+<!-- modals to trigger by button -->
+<div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel">
+    <add-student></add-student>
+</div>
+<div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel">
+    <edit-student></edit-student>
+</div>
+<div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudentModalLabel">
+    <delete-student></delete-student>
+</div>
+<div class="modal fade" id="queryDatabase" tabindex="-1" role="dialog" aria-labelledby="queryModalLabel">
+    <query-database></query-database>
+</div>
+
+</body>
+</html>

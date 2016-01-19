@@ -3,9 +3,6 @@
     <properties>
       <option name="frameworkName" value="jQuery" />
       <option name="frameworkVersion" value="" />
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/public/bower_components/angular" />
-      </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/public/bower_components/angular" />
