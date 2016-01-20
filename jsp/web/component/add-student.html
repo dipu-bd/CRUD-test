@@ -1,0 +1,21 @@
+<!-- Add new student modal -->
+<div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="addStudentModalTitle">Add New Student</h4>
+        </div>
+        <div class="modal-body">
+            <div class="text-center text-info well" ng-show="appCtrl.error"><b>{{appCtrl.error}}</b></div>
+            <!-- create student form -->
+            <form ng-submit="appCtrl.addStudent()">
+                <student-form-content></student-form-content>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Add Student"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
